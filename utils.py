@@ -1,46 +1,8 @@
 #!/usr/bin/python3
-
-# Opcao WebPages
-#import bs4
-#from langchain_community.document_loaders import WebBaseLoader
-# Load and chunk contents of the blog
-#loader = WebBaseLoader(
-#    web_paths=("https://lilianweng.github.io/posts/2023-06-23-agent/",),
-#    bs_kwargs=dict(
-#        parse_only=bs4.SoupStrainer(
-#            class_=("post-content", "post-title", "post-header")
-#        )
-#    ),
-#)
-#docs = loader.load()
+from debug import debugInfo,debugDebug
 
 DEFAULT_COLLECTION='test_collection'
 COLLECTION_ENTITIES='ngsiEntities'
-
-# Debug
-LEVEL_ERROR=3
-LEVEL_INFO=2
-LEVEL_DEBUG=1
-LEVEL_NONE=99
-
-DEBUG_LEVEL=LEVEL_INFO
-DEBUG_LEVELS={}
-DEBUG_LEVELS[LEVEL_ERROR]="ERROR"
-DEBUG_LEVELS[LEVEL_DEBUG]="DEBUG"
-DEBUG_LEVELS[LEVEL_INFO]="INFO"
-
-def debug(p_msg,p_level):
-	if p_level>=DEBUG_LEVEL:
-		td=DEBUG_LEVELS[p_level]
-		from time import gmtime, strftime
-		tm=strftime("%Y-%m-%d %H:%M:%S", gmtime())
-		print(f"{tm} :: {__name__} :: {td} :: {p_msg}");
-def debugError(p_msg):
-	debug(p_msg,LEVEL_ERROR)
-def debugDebug(p_msg):
-	debug(p_msg,LEVEL_DEBUG)
-def debugInfo(p_msg):
-	debug(p_msg,LEVEL_INFO)
 
 # Get the embeddings object
 def get_embeddings():

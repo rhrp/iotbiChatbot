@@ -1,6 +1,7 @@
 
 #!/usr/bin/python3
-from utils import debugInfo,debugDebug,get_embeddings,open_InMemory_vector_store,open_Chroma_vector_store,similaritySearch,DEFAULT_COLLECTION,COLLECTION_ENTITIES
+from utils import get_embeddings,open_InMemory_vector_store,open_Chroma_vector_store,similaritySearch,DEFAULT_COLLECTION,COLLECTION_ENTITIES
+from debug import debugInfo,debugDebug
 from hdfs_vector_store import get_vector_store_entities,get_vector_store_geometadata,get_vector_store_data
 from hdfs_data import find_services
 #from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -193,10 +194,10 @@ def do_metaquery(question):
 #do_metaquery('Indicar a temperatura, e a data/hora da respectiva observação, em São Pedro de Fins na Maia?')
 #do_metaquery('Indicar a temperatura, e a data/hora da respectiva observação, em Matosinhos')
 #do_metaquery('Indicar a temperatura, e a data/hora da respectiva observação, em Matosinhos e Vila Nova de Gaia')
-do_metaquery('Indicar a temperatura, e a data/hora da respectiva observação, em Matosinhos e Vila do Conde')
+#do_metaquery('Indicar a temperatura, e a data/hora da respectiva observação, em Matosinhos e Vila do Conde')
 #do_metaquery('Indicar a temperatura, e a data/hora da respectiva observação, em Lisboa')
 #do_metaquery('Qual é o nível de dioxido de carbono, a data/hora e local exacto da respectiva observação nos seguintes locais: Matosinhos, Vila Nova de Gaia e Avenida da Boavista no Porto')
-
+do_metaquery('Quais são os dados que estão disponíveis sobre edificios no ponto geográfico longitude 13.369800 e latitude 52.516300?')
 
 def do_geoquery_test1(question):
         metaquestion=f"Considerando a tabela, quais são os FiwareServices que tem um centroid mais perto do local relativo à questão: \"{question}\"?"

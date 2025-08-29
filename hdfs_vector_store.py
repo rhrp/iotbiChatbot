@@ -1,4 +1,5 @@
-from utils import debugInfo,debugDebug,DEFAULT_COLLECTION,COLLECTION_ENTITIES,saveInMemory
+from utils import DEFAULT_COLLECTION,COLLECTION_ENTITIES,saveInMemory
+from debug import debugInfo,debugDebug
 from config import HTTP_HADOOP_ENDPOINT,HADOOP_USER
 
 def get_vector_store_entities():

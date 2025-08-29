@@ -1,6 +1,7 @@
 
 import pandas as pd
-from utils import debugInfo,debugDebug,find_common_elements
+from utils import find_common_elements
+from debug import debugInfo,debugDebug
 from config import HTTP_HADOOP_ENDPOINT,WEBHDFS_HADOOP_ENDPOINT,HADOOP_USER
 
 def get_geometadata(p_list_entities):
@@ -52,11 +53,16 @@ def get_filtered_services(df,p_list_of_locals,p_list_of_coords):
            if(np.isnan(centroid_lon) or np.isnan(centroid_lat)):
                 debugInfo(f"Ignore {service} with centroid ({centroid_lon},{centroid_lat}) in case of {coord_point}")
            else:
+                if(max_distance>10):
+                   dist_tolerance=1
+                else:
+                   debugInfo(f"The {service}'s cluster size is too small ({max_distance}) we will used a large distance tolerance")
+                   dist_tolerance=10
                 p1 = (centroid_lon,centroid_lat)
                 p2 = (longitude,latitude)
                 distance=geopy.distance.geodesic(p1,p2).km
                 debugDebug(f"Distance of {service}'s centroid {p1}  to the local {p2}:   {distance} kms")
-                if(distance<max_distance):
+                if(distance<max_distance+dist_tolerance):
                     debugInfo(f"The Service {service} will be used to analyse data ({totalOfPoints} points) about {entityType}")
                     if(service in services):
                        debugDebug('The service is already resgistered')
@@ -68,7 +74,7 @@ def get_filtered_services(df,p_list_of_locals,p_list_of_coords):
                        services[service][entityType]={}
                     services[service][entityType][cluster_id]={'centroid_location_coordinates_lon':centroid_lon,'centroid_location_coordinates_lat':centroid_lat,'max_distance':max_distance,'points':totalOfPoints};
                 else:
-                    debugInfo(f"The Service {service} will not be used because the {distance} is greater then {max_distance}")
+                    debugInfo(f"The Service {service} will not be used because the {distance} is greater then {max_distance}+{dist_tolerance}")
       debugInfo(f"End:Check coords {coord_point}")
       p=p+1
     return services

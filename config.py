@@ -1,0 +1,8 @@
+#!/usr/bin/python3
+
+HADOOP_ENDPOINT="api.iotbi.tech:5000"
+
+HTTP_HADOOP_ENDPOINT="http://"+HADOOP_ENDPOINT
+WEBHDFS_HADOOP_ENDPOINT="webhdfs://"+HADOOP_ENDPOINT
+
+HADOOP_USER="hadoop"

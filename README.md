@@ -1,2 +1,1 @@
-# iotbiChatbot
-Chatbot for IoTBI
+do_embeds - Manages the embeddings store
